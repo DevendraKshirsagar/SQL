@@ -1,2 +1,2 @@
 # SQL
-SQL Practice 
+SQL Practice questions for EMPBLD Dataset.
