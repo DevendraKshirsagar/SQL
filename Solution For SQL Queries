@@ -1,0 +1,411 @@
+1. Display all the information of the EMP table.
+
+SQL> Select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+2. Display unique Jobs from EMP table?
+
+SQL> select distinct job from emp;
+
+JOB
+---------
+CLERK
+SALESMAN
+PRESIDENT
+MANAGER
+ANALYST
+
+SQL> select unique job from emp;
+
+JOB
+---------
+CLERK
+SALESMAN
+PRESIDENT
+MANAGER
+ANALYST
+
+3. List the emps in the asc order of their Salaries?
+
+SQL> select * from emp order by sal asc;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+
+14 rows selected.
+
+4. List the details of the emps in asc order of the Dptnos and desc of Jobs?
+
+SQL> select * from emp order by deptno asc, job desc;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+
+14 rows selected.
+
+5. Display all the unique job groups in the descending order?
+
+SQL> select distinct job from emp order by job desc;
+
+JOB
+---------
+SALESMAN
+PRESIDENT
+MANAGER
+CLERK
+ANALYST
+
+6. Display all the details of all ‘Mgrs’
+
+SQL> select * from emp where empno in (select mgr from emp);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+
+6 rows selected.
+
+7. List the emps who joined before 1981.
+
+SQL> select * from emp where hiredate > ('1-jan-81');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+13 rows selected.
+
+8. List the Empno, Ename, Sal, Daily sal of all emps in the asc order of Annsal.
+
+SQL> select empno, ename, sal, sal/30, 12*sal ansal from emp order by ansal asc;
+
+     EMPNO ENAME             SAL     SAL/30      ANSAL
+---------- ---------- ---------- ---------- ----------
+      7369 SMITH             800 26.6666667       9600
+      7900 JAMES             950 31.6666667      11400
+      7876 ADAMS            1100 36.6666667      13200
+      7521 WARD             1250 41.6666667      15000
+      7654 MARTIN           1250 41.6666667      15000
+      7934 MILLER           1300 43.3333333      15600
+      7844 TURNER           1500         50      18000
+      7499 ALLEN            1600 53.3333333      19200
+      7782 CLARK            2450 81.6666667      29400
+      7698 BLAKE            2850         95      34200
+      7566 JONES            2975 99.1666667      35700
+
+     EMPNO ENAME             SAL     SAL/30      ANSAL
+---------- ---------- ---------- ---------- ----------
+      7788 SCOTT            3000        100      36000
+      7902 FORD             3000        100      36000
+      7839 KING             5000 166.666667      60000
+
+14 rows selected.
+
+9. Display the Empno, Ename, job, Hiredate, Exp of all Mgrs
+
+SQL> select empno, ename, job, hiredate, months_between(sysdate, hiredate)/12 exp from emp where empno in (select mgr from emp);
+
+     EMPNO ENAME      JOB       HIREDATE         EXP
+---------- ---------- --------- --------- ----------
+      7902 FORD       ANALYST   03-DEC-81 41.8404122
+      7698 BLAKE      MANAGER   01-MAY-81 42.4291219
+      7839 KING       PRESIDENT 17-NOV-81 41.8861111
+      7566 JONES      MANAGER   02-APR-81  42.509767
+      7788 SCOTT      ANALYST   09-DEC-82 40.8242832
+      7782 CLARK      MANAGER   09-JUN-81 42.3242832
+
+6 rows selected.
+
+SQL> select empno, ename, job, hiredate, months_between('1-dec-90', hiredate)/12 exp from emp where empno in (select mgr from emp);
+
+     EMPNO ENAME      JOB       HIREDATE         EXP
+---------- ---------- --------- --------- ----------
+      7902 FORD       ANALYST   03-DEC-81 8.99462366
+      7698 BLAKE      MANAGER   01-MAY-81 9.58333333
+      7839 KING       PRESIDENT 17-NOV-81 9.04032258
+      7566 JONES      MANAGER   02-APR-81 9.66397849
+      7788 SCOTT      ANALYST   09-DEC-82 7.97849462
+      7782 CLARK      MANAGER   09-JUN-81 9.47849462
+
+6 rows selected.
+
+10. List the Empno, Ename, Sal, Exp of all emps working for Mgr 7839.
+
+SQL> select empno, ename,sal, months_between('1-dec-90', hiredate)/12 exp from emp where mgr = 7839;
+
+     EMPNO ENAME             SAL        EXP
+---------- ---------- ---------- ----------
+      7566 JONES            2975 9.66397849
+      7698 BLAKE            2850 9.58333333
+      7782 CLARK            2450 9.47849462
+11. Display all the details of the emps whose Comm. Is more than their Sal.
+
+SQL> select * from emp where comm > sal;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+
+12. List the emps in the asc order of Designations of those joined after the second half of 1981.
+
+
+13. List the emps along with their Exp and Daily Sal is more than Rs.100.
+
+SQL> select ename, months_between('1-dec-90', hiredate)/12 exp from emp where (sal/30) > 100;
+
+ENAME             EXP
+---------- ----------
+KING       9.04032258
+
+14. List the emps who are either ‘CLERK’ or ‘ANALYST’ in the Desc order
+
+SQL> select * from emp where job= 'CLERK' or job = 'ANALYST' order by job desc;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+
+6 rows selected.
+
+15. List the emps who joined on 1-MAY-81,3-DEC-81,17-DEC-81,19-JAN-80 in asc order of seniority.
+
+SQL> select * from emp where hiredate in ('01-may-81’,’03-dec-81’,’17-dec-81’,’19-jan-80') order by hiredate asc;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+
+16. List the emp who are working for the Deptno 10 or20.
+
+SQL> select * from emp where deptno in (10,20);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+8 rows selected.
+
+17. List the emps who are joined in the year 81.
+
+SQL> select * from emp where hiredate between '31-dec-80' and '1-jan-82';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+10 rows selected.
+
+18. List the emps who are joined in the month of Aug 1980.
+
+SQL> select * from emp where hiredate between '31-jul-80' and '1-sep-80';
+
+no rows selected
+
+19. List the emps Who Annual sal ranging from 22000 and 45000
+
+SQL> select * from emp where sal*12 between 22000 and 45000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+
+20. List the Enames those are having five characters in their Names.
+
+SQL> select ename from emp where length(ename) = 5;
+
+ENAME
+----------
+SMITH
+ALLEN
+JONES
+BLAKE
+CLARK
+SCOTT
+ADAMS
+JAMES
+
+8 rows selected.
+
+21.   List the Enames those are starting with ‘S’ and with five characters.
+
+SQL> select ename from emp where ename like 'S%' and length(ename) = 5;
+
+ENAME
+----------
+SMITH
+SCOTT
+
+22. List the emps those are having four chars and third character must be ‘r’
+
+SQL> select ename from emp where ename like '__R%' and length(ename) = 4;
+
+ENAME
+----------
+WARD
+FORD
+
+23. List the Five character names starting with ‘S’ and ending with ‘H’.
+
+SQL> select ename from emp where ename like 'S%H' and length(ename) = 5;
+
+ENAME
+----------
+SMITH
+
+24. List the emps who joined in January.
+
+SQL> select * from emp where to_char(hiredate, 'mon') = 'jan';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+25. List the emps who joined in the month of which second character is ‘a’.
+
+SQL> select ename from emp where to_char(hiredate, 'mon') like '_a_';
+
+ENAME
+----------
+BLAKE
+ADAMS
+MILLER
+
+26. List the emps whose Sal is four digit number ending with Zero.
+
+SQL> select * from emp where sal like '%0' and length(sal) = 4;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+11 rows selected.
+
+27. List the emps whose names having a character set ‘ll’ together.
+
+SQL> select * from emp where ename like '%LL%';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+
+
+
+
+
+
