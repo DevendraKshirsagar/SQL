@@ -94,3 +94,4 @@ SQL> select * from emp where ENAME = 'SMITH';
      EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
 ---------- ---------- --------- ---------- --------- ---------- ---------- ----------
       7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+7. Display the location of SMITH.
